@@ -7,6 +7,7 @@ import HomeScreen from '../screens/HomeScreen'
 import LinksScreen from '../screens/LinksScreen'
 import SignInScreen from '../screens/SignInScreen'
 import SignUpScreen from '../screens/SignUpScreen'
+import ProfileScreen from '../screens/ProfileScreen'
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -55,6 +56,9 @@ const MyStackNavigator = createStackNavigator({
   },
   SignIn: {
     screen: SignInScreen,
+  },
+  Profile: {
+    screen: ProfileScreen,
   },
 })
 
