@@ -63,9 +63,6 @@ const styles = StyleSheet.create({
     // alignItems: 'stretch',
     // backgroundColor: '#fff',
   },
-  wrapper: {
-    flex: 8,
-  },
   titleH:{
     fontWeight: 'bold',
     lineHeight: 37,
