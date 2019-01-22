@@ -3,7 +3,7 @@
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerNgrokUrl": "https://fa-abx.anonymous.travel-app.exp.direct",
+  "packagerNgrokUrl": "https://packager.fa-abx.anonymous.travel-app.exp.direct",
+  "ngrokPid": 4193
 }
