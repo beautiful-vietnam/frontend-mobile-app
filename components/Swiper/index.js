@@ -1,0 +1,1 @@
+export { default as SwiperFlame } from './Swiper'
