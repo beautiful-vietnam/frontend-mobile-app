@@ -1,6 +1,10 @@
 import React from 'react'
 import { Platform } from 'react-native'
-import { createStackNavigator, createBottomTabNavigator, createDrawerNavigator } from 'react-navigation'
+import {
+  createStackNavigator,
+  createBottomTabNavigator,
+  createDrawerNavigator,
+} from 'react-navigation'
 
 import TabBarIcon from '../components/TabBarIcon'
 import HomeScreen from '../screens/HomeScreen'
@@ -15,18 +19,13 @@ const HomeStack = createStackNavigator({
 
 HomeStack.navigationOptions = {
   tabBarLabel: 'Travel',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name="md-briefcase"
-    />
-  ),
+  tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-briefcase" />,
   tabBarOptions: {
     activeTintColor: '#FD5739',
     style: {
-      backgroundColor: '#F5F5F5'
-    }
-  }
+      backgroundColor: '#F5F5F5',
+    },
+  },
 }
 
 const LinksStack = createStackNavigator({
@@ -41,11 +40,10 @@ LinksStack.navigationOptions = {
   tabBarOptions: {
     activeTintColor: '#FD5739',
     style: {
-      backgroundColor: '#F5F5F5'
-    }
-  }
+      backgroundColor: '#F5F5F5',
+    },
+  },
 }
-
 
 const MyStackNavigator = createStackNavigator({
   Test: {
@@ -62,15 +60,12 @@ const MyStackNavigator = createStackNavigator({
   },
 })
 
-
-const MyTabNavigator =  createBottomTabNavigator({
+const MyTabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
 })
 
-export default createDrawerNavigator(
-  {
-    MyTabNavigator,
-    MyStackNavigator
-  }
-)
+export default createDrawerNavigator({
+  MyTabNavigator,
+  MyStackNavigator,
+})

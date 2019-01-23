@@ -3,6 +3,7 @@ import { Icon } from 'expo'
 
 import Colors from '../constants/Colors'
 
+// eslint-disable-next-line react/prefer-stateless-function
 export default class TabBarIcon extends React.Component {
   render() {
     return (
