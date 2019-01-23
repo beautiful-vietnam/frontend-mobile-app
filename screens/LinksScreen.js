@@ -17,6 +17,10 @@ export default class LinksScreen extends React.Component {
           title="Đăng ký"
           onPress={() => this.props.navigation.navigate('SignUp')}
         />
+        <Button
+          title="DemoApi"
+          onPress={() => this.props.navigation.navigate('DemoApi')}
+        />
       </ScrollView>
     )
   }
