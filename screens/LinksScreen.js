@@ -9,18 +9,10 @@ export default class LinksScreen extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <Button
-          title="Đăng nhập"
-          onPress={() => this.props.navigation.navigate('SignIn')}
-        />
-        <Button
-          title="Đăng ký"
-          onPress={() => this.props.navigation.navigate('SignUp')}
-        />
-        <Button
-          title="DemoApi"
-          onPress={() => this.props.navigation.navigate('DemoApi')}
-        />
+        <Button title="Đăng nhập" onPress={() => this.props.navigation.navigate('SignIn')} />
+        <Button title="Đăng ký" onPress={() => this.props.navigation.navigate('SignUp')} />
+        <Button title="My Profile" onPress={() => this.props.navigation.navigate('Profile')} />
+        <Button title="Demo API" onPress={() => this.props.navigation.navigate('DemoApi')} />
       </ScrollView>
     )
   }
