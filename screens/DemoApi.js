@@ -12,11 +12,13 @@ export default class SignIn extends React.Component {
   }
 
   getListArticle() {
-    axios.get(`https://travel-app.000webhostapp.com/wp-json/wp/v2/posts?_embed`).then(result => {
-      this.setState({
-        listArticle: result.data,
+    axios
+      .get(`https://travel-app.000webhostapp.com/wp-json/wp/v2/posts?_embed&categories=2`)
+      .then(result => {
+        this.setState({
+          listArticle: result.data,
+        })
       })
-    })
   }
 
   showTitle() {
