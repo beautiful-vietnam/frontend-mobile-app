@@ -7,7 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "test": "node ./node_modules/jest/bin/jest.js --watchAll"
+    "test": "node ./node_modules/jest/bin/jest.js --watchAll",
+    "react-devtools": "react-devtools"
   },
   "jest": {
     "preset": "jest-expo"
@@ -15,12 +16,15 @@
   "dependencies": {
     "@expo/samples": "2.1.1",
     "axios": "^0.18.0",
+    "electron": "^4.0.2",
     "expo": "^31.0.2",
+    "global": "^4.3.2",
     "react": "16.5.0",
+    "react-devtools": "^3.6.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
     "react-native-elements": "^0.19.1",
-    "react-native-htmlview": "^0.13.0",
     "react-native-gesture-handler": "^1.0.12",
+    "react-native-htmlview": "^0.13.0",
     "react-native-vector-icons": "^6.2.0",
     "react-navigation": "^2.18.2",
     "react-test-renderer": "^16.7.0"

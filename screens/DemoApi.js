@@ -12,13 +12,11 @@ export default class SignIn extends React.Component {
   }
 
   getListArticle() {
-    axios
-      .get(`https://travel-app.000webhostapp.com/wp-json/wp/v2/posts?categories=2`)
-      .then(result => {
-        this.setState({
-          listArticle: result.data,
-        })
+    axios.get(`https://travel-app.000webhostapp.com/wp-json/wp/v2/posts?_embed`).then(result => {
+      this.setState({
+        listArticle: result.data,
       })
+    })
   }
 
   showTitle() {
@@ -27,7 +25,12 @@ export default class SignIn extends React.Component {
         // eslint-disable-next-line react/no-array-index-key
         <View key={key}>
           <Text>{value.title.rendered}</Text>
-          <HTMLView value={value.content.rendered} renderNode={this.renderNode} />
+          <Image
+            resizeMode="contain"
+            style={styles.imageStyle}
+            source={{ uri: value._embedded['wp:featuredmedia'][0].source_url }}
+          />
+          <HTMLView value={value.excerpt.rendered} renderNode={this.renderNode} />
         </View>
       ))
     }
@@ -44,9 +47,8 @@ export default class SignIn extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Demo api</Text>
         <ScrollView style={styles.container}>{this.showTitle()}</ScrollView>
-        <Button title="Show API" onPress={this.getListArticle()} />
+        <Button title="Show API" onPress={() => this.getListArticle()} />
       </View>
     )
   }
@@ -57,5 +59,10 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 15,
     backgroundColor: '#fff',
+  },
+  imageStyle: {
+    height: 250,
+    flex: 1,
+    width: null,
   },
 })
