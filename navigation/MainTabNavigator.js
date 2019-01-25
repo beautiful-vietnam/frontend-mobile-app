@@ -12,6 +12,8 @@ import LinksScreen from '../screens/LinksScreen'
 import SignInScreen from '../screens/SignInScreen'
 import SignUpScreen from '../screens/SignUpScreen'
 import ProfileScreen from '../screens/ProfileScreen'
+import RePassScreen from '../screens/ResetPassScreen'
+import LanguagesSceen from '../screens/LanguagesScreen'
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -55,8 +57,14 @@ const MyStackNavigator = createStackNavigator({
   SignIn: {
     screen: SignInScreen,
   },
+  Repass: {
+    screen: RePassScreen,
+  },
   Profile: {
     screen: ProfileScreen,
+  },
+  languages: {
+    screen: LanguagesSceen,
   },
 })
 

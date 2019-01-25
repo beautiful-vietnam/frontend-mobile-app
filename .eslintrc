@@ -23,7 +23,9 @@
     "no-alert": 0,
     "no-return-assign": 0,
     "no-undef": 0,
-    "consistent-return": 0
+    "react/prefer-stateless-function": 0,
+    "consistent-return": 0,
+    "no-else-return": 0
   },
   "plugins": ["prettier"],
   "parser": "babel-eslint"
