@@ -22,7 +22,8 @@
     "global-require": 0,
     "no-alert": 0,
     "no-return-assign": 0,
-    "no-undef": 0
+    "no-undef": 0,
+    "react/prefer-stateless-function": 0
   },
   "plugins": ["prettier"],
   "parser": "babel-eslint"
