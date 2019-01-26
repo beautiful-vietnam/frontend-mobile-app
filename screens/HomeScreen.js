@@ -1,6 +1,7 @@
 import React from 'react'
-import { Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { SwiperFlame} from '../components/Swiper'
+import { StyleSheet, Text, View, ScrollView } from 'react-native'
+import { SwiperFlame } from '../components/Swiper'
+import { ListPosts } from '../components/Post'
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -9,34 +10,41 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.wraper}>
-        <View style={styles.swiper}> 
-          <Text style={styles.titleH}>Travel</Text> 
-          <SwiperFlame />   
+      <ScrollView
+        style={styles.wraper}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={styles.swiper}>
+          <Text style={styles.topTitle}>Travel</Text>
+          <SwiperFlame />
         </View>
-        <View style={styles.content}> 
-          <Text style={styles.titleH}>Content</Text>  
+        <View style={styles.contentTravel}>
+          <ListPosts />
         </View>
-      </SafeAreaView>
+      </ScrollView>
     )
   }
 }
 
-
 const styles = StyleSheet.create({
   wraper: {
     flex: 1,
+    paddingTop: 20,
+    backgroundColor: '#fff',
   },
   swiper: {
-    padding: 20,
-    flex: 2,
+    height: 300,
+    padding: 25,
   },
-  titleH:{
+  topTitle: {
     fontWeight: 'bold',
     lineHeight: 37,
     fontSize: 28,
+    paddingBottom: 20,
   },
-  content: {
-    flex: 3,
-  }
+  contentTravel: {
+    paddingLeft: 15,
+    paddingRight: 15,
+  },
 })

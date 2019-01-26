@@ -19,14 +19,37 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
     "react-native-elements": "^0.19.1",
     "react-native-swiper": "^1.5.14",
+    "react-native-gesture-handler": "^1.0.12",
     "react-native-vector-icons": "^6.2.0",
-    "react-navigation": "^2.18.2"
+    "react-navigation": "^2.18.2",
+    "react-test-renderer": "^16.7.0"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
     "babel-preset-expo": "^5.0.0",
-    "eslint": "^5.12.1",
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-react": "^7.11.1",
+    "husky": "^1.3.1",
     "jest-expo": "^31.0.0",
+    "lint-staged": "^8.1.0",
     "prettier": "^1.14.3",
     "pretty-quick": "^1.10.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue}": [
+      "pretty-quick --staged",
+      "eslint . --fix --quiet --ignore-path .gitignore",
+      "git add"
+    ]
   }
 }

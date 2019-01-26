@@ -1,19 +1,18 @@
-import React, { Component }  from 'react'
-import { View, Text, Image, StyleSheet } from 'react-native'
+import React, { Component } from 'react'
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import Swiper from 'react-native-swiper'
 
-
 export class SwiperFlame extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       dataHome: [
         {
           id: 1,
-          title: 'Trip to home',
+          title: 'Trip to Sapa',
           content: 'rule of jungle',
-          link: 'https://nhadatnhanh.vn/upload/news/m-a-bat-dong-san-ngay-cang-than-thien-37984.jpg',
-        }, 
+          link: 'https://uphinhnhanh.com/images/2019/01/24/Sea.png',
+        },
         {
           id: 2,
           title: 'Trip to Sapa',
@@ -31,39 +30,64 @@ export class SwiperFlame extends Component {
           title: 'Trip to bacode',
           content: 'rule of Flame',
           link: 'https://uphinhnhanh.com/images/2019/01/23/trip.png',
-        }
-      ]
+        },
+      ],
     }
   }
 
   render() {
     return (
-      <Swiper style={styles.wrapper} 
-        loop={true}
-        autoplay={true}
+      <Swiper
+        style={styles.wrapper}
+        loop
+        autoplay
         autoplayTimeout={5}
-        dot = {<View style={{backgroundColor: '#E0E0E1', width: 10, height: 10,borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 30,}} />}
-        activeDot = {<View style={{backgroundColor: '#FD5739', width: 10, height: 10, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 30,}} />}
-        >
-        {
-          this.state.dataHome.map((item, i) => 
-          <View key={i} style={styles.slide}>
-            <Image style={styles.image} source={{ uri: item.link }} />
-            <View style={styles.contentWraper}>
-              <Text style={styles.contentTitle}>{ item.title }</Text>
-              <Text style={styles.content}>{ item.content }</Text>
+        dot={
+          <View
+            style={{
+              backgroundColor: '#E0E0E1',
+              width: 10,
+              height: 10,
+              borderRadius: 4,
+              marginLeft: 3,
+              marginRight: 3,
+              marginTop: 3,
+              marginBottom: 10,
+            }}
+          />
+        }
+        activeDot={
+          <View
+            style={{
+              backgroundColor: '#FD5739',
+              width: 10,
+              height: 10,
+              borderRadius: 4,
+              marginLeft: 3,
+              marginRight: 3,
+              marginTop: 3,
+              marginBottom: 10,
+            }}
+          />
+        }
+      >
+        {this.state.dataHome.map(item => (
+          <TouchableOpacity style={styles.touch} key={item.id}>
+            <View style={styles.slide}>
+              <Image style={styles.image} source={{ uri: item.link }} />
+              <View style={styles.contentWraper}>
+                <Text style={styles.contentTitle}>{item.title}</Text>
+                <Text style={styles.content}>{item.content}</Text>
+              </View>
             </View>
-          </View>
-        )}
+          </TouchableOpacity>
+        ))}
       </Swiper>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
-    height: 200
-  },
   slide: {
     flex: 1,
   },
@@ -71,13 +95,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignSelf: 'stretch',
     width: null,
-    resizeMode: 'contain',
+    resizeMode: 'cover',
     borderRadius: 8,
   },
   contentWraper: {
     position: 'absolute',
-    top: 70,
-    left: 75,
+    top: 50,
+    left: 50,
+    right: 50,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -91,7 +116,10 @@ const styles = StyleSheet.create({
   content: {
     color: '#FFFFFF',
     fontSize: 17,
-  }
+  },
+  touch: {
+    flex: 1,
+  },
 })
 
 export default SwiperFlame
