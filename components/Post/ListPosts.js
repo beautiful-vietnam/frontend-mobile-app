@@ -37,7 +37,6 @@ export class ListPosts extends Component {
         ],
       },
       category2: {
-        id: 1,
         title: 'My trip with Hồng Vân',
         description: 'Nhoc ANNE FT Flame',
         data: [
@@ -75,10 +74,10 @@ export class ListPosts extends Component {
     const { category2 } = this.state
     return (
       <View style={styles.wrapAll}>
-        <View style={styles.wraperCate1}>
+        <View style={styles.wraperCate}>
           <SectionContent dataCate={category1} />
         </View>
-        <View style={styles.wraperCate2}>
+        <View style={styles.wraperCate}>
           <SectionContent dataCate={category2} />
         </View>
       </View>
@@ -90,7 +89,7 @@ const styles = StyleSheet.create({
   wrapAll: {
     fontWeight: 'bold',
   },
-  wraperCate1: {
+  wraperCate: {
     paddingBottom: 50,
   },
 })

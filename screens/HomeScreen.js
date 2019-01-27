@@ -34,17 +34,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   swiper: {
-    height: 300,
-    padding: 25,
+    height: 380,
+    paddingBottom: 25,
+    paddingTop: 25,
   },
   topTitle: {
+    color: '#24253D',
     fontWeight: 'bold',
     lineHeight: 37,
     fontSize: 28,
+    paddingLeft: 25,
     paddingBottom: 20,
+    fontFamily: 'Playfair Display',
   },
   contentTravel: {
     paddingLeft: 15,
-    paddingRight: 15,
   },
 })

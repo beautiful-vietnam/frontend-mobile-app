@@ -8,10 +8,12 @@ const SectionContent = dataCate => {
       marginBottom: 20,
     },
     titleCate: {
+      color: '#484848',
       fontSize: 20,
       fontWeight: 'bold',
     },
     desCate: {
+      color: '#484848',
       fontSize: 16,
     },
     image: {
@@ -22,13 +24,16 @@ const SectionContent = dataCate => {
       marginBottom: 20,
     },
     lists: {
-      paddingLeft: 10,
+      paddingLeft: 8,
+      paddingRight: 15,
     },
     textLocation: {
+      color: '#484848',
       fontSize: 18,
       fontWeight: 'bold',
     },
     textDate: {
+      color: '#484848',
       fontSize: 14,
     },
   }
