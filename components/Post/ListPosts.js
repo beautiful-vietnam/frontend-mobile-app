@@ -8,8 +8,14 @@ export class ListPosts extends Component {
     super(props)
     this.state = {
       category1: {
-        title: 'Cẩm nang du lịch ',
+        title: 'Cẩm nang du lịch',
         description: 'Chia sẻ các địa điểm du lịch và kinh nghiệm đi du lịch tại Việt Nam',
+        data: [],
+      },
+      // eslint-disable-next-line react/no-unused-state
+      category2: {
+        title: 'Mẹo đi du lịch',
+        description: 'Các mẹo, tips dành cho người nước ngoài khi du lịch tại Việt Nam',
         data: [],
       },
     }
@@ -26,19 +32,29 @@ export class ListPosts extends Component {
           },
         }))
       })
+    axios
+      .get(`https://travel-app.000webhostapp.com/wp-json/wp/v2/posts?_embed&categories=3`)
+      .then(result => {
+        this.setState(preState => ({
+          category2: {
+            ...preState.category2,
+            data: result.data,
+          },
+        }))
+      })
   }
 
   render() {
     const { category1 } = this.state
-    // const { category2 } = this.state
+    const { category2 } = this.state
     return (
       <View style={styles.wrapAll}>
         <View style={styles.wraperCate}>
           <SectionContent dataCate={category1} />
         </View>
-        {/* <View style={styles.wraperCate}>
+        <View style={styles.wraperCate}>
           <SectionContent dataCate={category2} />
-        </View> */}
+        </View>
       </View>
     )
   }
