@@ -8,6 +8,13 @@ export default class App extends React.Component {
     isLoadingComplete: false,
   }
 
+  async componentWillMount() {
+    await Font.loadAsync({
+      'Playfair Display': require('./assets/fonts/PlayfairDisplay-Bold.ttf'),
+      Roboto: require('./assets/fonts/Roboto-Bold.ttf'),
+    })
+  }
+
   _handleLoadingError = error => {
     // In this case, you might want to report the error to your error
     // reporting service, for example Sentry
@@ -29,7 +36,7 @@ export default class App extends React.Component {
         ...Icon.Ionicons.font,
         // We include SpaceMono because we use it in HomeScreen.js. Feel free
         // to remove this if you are not using it in your app
-        'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
+        Roboto: require('./assets/fonts/Roboto-Bold.ttf'),
       }),
     ])
 
@@ -56,5 +63,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    fontFamily: 'Roboto',
   },
 })
