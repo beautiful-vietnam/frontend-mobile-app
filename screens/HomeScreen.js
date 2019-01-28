@@ -10,19 +10,19 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
-      <ScrollView
-        style={styles.wraper}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={styles.swiper}>
+      <View style={styles.wraper}>
+        <View>
           <Text style={styles.topTitle}>Travel</Text>
-          <SwiperFlame />
         </View>
-        <View style={styles.contentTravel}>
-          <ListPosts />
-        </View>
-      </ScrollView>
+        <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
+          <View style={styles.swiper}>
+            <SwiperFlame navigation={this.props.navigation} />
+          </View>
+          <View style={styles.contentTravel}>
+            <ListPosts navigation={this.props.navigation} />
+          </View>
+        </ScrollView>
+      </View>
     )
   }
 }
@@ -34,20 +34,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   swiper: {
-    height: 380,
+    height: 320,
+    marginLeft: 25,
     paddingBottom: 25,
-    paddingTop: 25,
+    paddingTop: 15,
   },
   topTitle: {
     color: '#24253D',
     fontWeight: 'bold',
     lineHeight: 37,
     fontSize: 28,
-    paddingLeft: 25,
-    paddingBottom: 20,
+    marginLeft: 25,
+    paddingTop: 25,
+    paddingBottom: 10,
     fontFamily: 'Playfair Display',
   },
   contentTravel: {
     paddingLeft: 15,
+    paddingRight: 10,
   },
 })

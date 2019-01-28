@@ -26,7 +26,6 @@ export default class Languages extends React.Component {
     super(props)
 
     this.state = {
-      // eslint-disable-next-line react/no-unused-state
       langCurrent: 'en',
     }
   }

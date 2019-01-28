@@ -10,14 +10,14 @@ export class SwiperFlame extends Component {
         {
           title: 'Trip to Sapa',
           content: 'rule of jungle',
-          link: 'https://uphinhnhanh.com/images/2019/01/24/Sea.png',
+          link: 'https://uphinhnhanh.com/images/2019/01/23/trip.png',
           location: 'Bali, Indonesia',
           date: 'Octobe 21, 2018',
         },
         {
           title: 'Trip to Sapa',
           content: 'rule of Flame',
-          link: 'https://uphinhnhanh.com/images/2019/01/23/trip.png',
+          link: 'https://uphinhnhanh.com/images/2019/01/24/Sea.png',
           location: 'Bali, Indonesia',
           date: 'Octobe 21, 2018',
         },
@@ -72,8 +72,7 @@ export class SwiperFlame extends Component {
 const styles = StyleSheet.create({
   slide: {
     flex: 1,
-    paddingLeft: 25,
-    paddingRight: 25,
+    marginRight: 25,
   },
   image: {
     flex: 1,
