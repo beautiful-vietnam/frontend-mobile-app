@@ -12,7 +12,6 @@ export class ListPosts extends Component {
         description: 'Chia sẻ các địa điểm du lịch và kinh nghiệm đi du lịch tại Việt Nam',
         data: [],
       },
-      // eslint-disable-next-line react/no-unused-state
       category2: {
         title: 'Mẹo đi du lịch',
         description: 'Các mẹo, tips dành cho người nước ngoài khi du lịch tại Việt Nam',
@@ -47,13 +46,14 @@ export class ListPosts extends Component {
   render() {
     const { category1 } = this.state
     const { category2 } = this.state
+    const { navigation } = this.props
     return (
       <View style={styles.wrapAll}>
         <View style={styles.wraperCate}>
-          <SectionContent dataCate={category1} />
+          <SectionContent dataCate={category1} navigation={navigation} />
         </View>
         <View style={styles.wraperCate}>
-          <SectionContent dataCate={category2} />
+          <SectionContent dataCate={category2} navigation={navigation} />
         </View>
       </View>
     )
