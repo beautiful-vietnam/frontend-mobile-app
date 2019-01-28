@@ -31,9 +31,6 @@ HomeStack.navigationOptions = {
 
 const LinksStack = createStackNavigator({
   Links: LinksScreen,
-  Test: {
-    screen: LinksScreen,
-  },
   SignUp: {
     screen: SignUpScreen,
   },
