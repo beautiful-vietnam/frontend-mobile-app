@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { View, Text, Button, ScrollView, StyleSheet, Image } from 'react-native'
+import { View, Text, ScrollView, StyleSheet, Image } from 'react-native'
 
 export default class SignIn extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ export default class SignIn extends React.Component {
     }
   }
 
-  getListArticle() {
+  componentDidMount() {
     axios
       .get(`https://travel-app.000webhostapp.com/wp-json/wp/v2/posts?_embed&categories=5`)
       .then(result => {
@@ -56,7 +56,6 @@ export default class SignIn extends React.Component {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <ScrollView style={styles.container}>{this.showTitle()}</ScrollView>
-        <Button title="Show API" onPress={() => this.getListArticle()} />
       </View>
     )
   }

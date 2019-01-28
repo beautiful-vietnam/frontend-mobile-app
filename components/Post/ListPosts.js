@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
+import axios from 'axios'
 import SectionContent from './SectionContent'
 
 export class ListPosts extends Component {
@@ -7,79 +8,37 @@ export class ListPosts extends Component {
     super(props)
     this.state = {
       category1: {
-        title: "Flame's trip with anne ",
-        description: 'Bacodekiller ft Flame',
-        data: [
-          {
-            id: 1,
-            location: 'Bali, Indonesia',
-            date: 'Octobe 21, 2018',
-            link: 'https://uphinhnhanh.com/images/2019/01/24/Sea.png',
-          },
-          {
-            id: 2,
-            location: 'Bali, Indonesia',
-            date: 'Octobe 21, 2018',
-            link: 'https://uphinhnhanh.com/images/2019/01/23/trip.png',
-          },
-          {
-            id: 3,
-            location: 'Bali, Indonesia',
-            date: 'Octobe 21, 2018',
-            link: 'https://uphinhnhanh.com/images/2019/01/23/trip.png',
-          },
-          {
-            id: 4,
-            location: 'Bali, Indonesia',
-            date: 'Octobe 21, 2018',
-            link: 'https://uphinhnhanh.com/images/2019/01/23/trip.png',
-          },
-        ],
-      },
-      category2: {
-        title: 'My trip with Hồng Vân',
-        description: 'Nhoc ANNE FT Flame',
-        data: [
-          {
-            id: 1,
-            location: 'Bali, Indonesia',
-            date: 'Octobe 21, 2018',
-            link: 'https://uphinhnhanh.com/images/2019/01/24/Sea.png',
-          },
-          {
-            id: 2,
-            location: 'Bali, Indonesia',
-            date: 'Octobe 21, 2018',
-            link: 'https://uphinhnhanh.com/images/2019/01/23/trip.png',
-          },
-          {
-            id: 3,
-            location: 'Bali, Indonesia',
-            date: 'Octobe 21, 2018',
-            link: 'https://uphinhnhanh.com/images/2019/01/23/trip.png',
-          },
-          {
-            id: 4,
-            location: 'Bali, Indonesia',
-            date: 'Octobe 21, 2018',
-            link: 'https://uphinhnhanh.com/images/2019/01/23/trip.png',
-          },
-        ],
+        title: 'Cẩm nang du lịch ',
+        description: 'Chia sẻ các địa điểm du lịch và kinh nghiệm đi du lịch tại Việt Nam',
+        data: [],
       },
     }
   }
 
+  componentDidMount() {
+    axios
+      .get(`https://travel-app.000webhostapp.com/wp-json/wp/v2/posts?_embed&categories=5`)
+      .then(result => {
+        this.setState(preState => ({
+          category1: {
+            ...preState.category1,
+            data: result.data,
+          },
+        }))
+      })
+  }
+
   render() {
     const { category1 } = this.state
-    const { category2 } = this.state
+    // const { category2 } = this.state
     return (
       <View style={styles.wrapAll}>
         <View style={styles.wraperCate}>
           <SectionContent dataCate={category1} />
         </View>
-        <View style={styles.wraperCate}>
+        {/* <View style={styles.wraperCate}>
           <SectionContent dataCate={category2} />
-        </View>
+        </View> */}
       </View>
     )
   }

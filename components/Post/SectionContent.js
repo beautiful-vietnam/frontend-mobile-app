@@ -1,6 +1,19 @@
 import React from 'react'
 import { Text, View, FlatList, Image, TouchableOpacity } from 'react-native'
 
+convertHTMLtoText = data => {
+  let excerpt = data.replace('<p>', '')
+  excerpt = excerpt.replace('</p>', '...')
+  return <Text>{excerpt}</Text>
+}
+
+convertDate = data => {
+  const date = new Date(data)
+  const indexTime = date.toString().indexOf(':') - 2
+  const dateConverted = date.toUTCString().substring(0, indexTime)
+  return <Text>{dateConverted}</Text>
+}
+
 const SectionContent = dataCate => {
   const styles = {
     wrapTitleCate: {
@@ -51,10 +64,14 @@ const SectionContent = dataCate => {
         renderItem={({ item }) => (
           <View style={styles.lists}>
             <TouchableOpacity>
-              <Image style={styles.image} source={{ uri: item.link }} />
+              <Image
+                style={styles.image}
+                source={{ uri: item._embedded['wp:featuredmedia'][0].source_url }}
+              />
             </TouchableOpacity>
-            <Text style={styles.textLocation}>{item.location}</Text>
-            <Text style={styles.textDate}>{item.date}</Text>
+            <Text style={styles.textLocation}>{item.title.rendered}</Text>
+            {convertDate(item.date)}
+            {convertHTMLtoText(item.excerpt.rendered)}
           </View>
         )}
         keyExtractor={item => item.id.toString()}
