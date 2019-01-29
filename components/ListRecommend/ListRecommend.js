@@ -68,7 +68,7 @@ export class ListRecommend extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingLeft: 20,
+    paddingLeft: 25,
     paddingRight: 10,
     paddingTop: 20,
     backgroundColor: '#fff',
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   packName: {
     fontSize: 18,
     fontWeight: '500',
-    marginBottom: 20,
+    marginBottom: 30,
   },
   btnShow: {
     justifyContent: 'center',
@@ -86,6 +86,8 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderColor: '#3A71F6',
     borderWidth: 1,
+    marginTop: 20,
+    marginBottom: 50,
   },
   btnShowTxt: {
     color: '#3A71F6',

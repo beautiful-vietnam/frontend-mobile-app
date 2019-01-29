@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, Image, StyleSheet, Dimensions } from 'react-native'
-import { Rating } from 'react-native-elements'
+import StarRating from 'react-native-star-rating'
 
 const { width } = Dimensions.get('window')
 
@@ -25,7 +25,6 @@ export class Detail extends Component {
 
   render() {
     const item = this.state.dataPost
-    const STAR_IMAGE = require('../../assets/images/star.png')
     return (
       <View style={styles.wrapAllDetail}>
         <View style={styles.wrapCover}>
@@ -33,15 +32,14 @@ export class Detail extends Component {
           <View style={styles.contentCover}>
             <Text style={styles.contentTitle}>{item.title}</Text>
             <Text style={styles.content}>{item.content}</Text>
-            <Rating
-              type="custom"
-              ratingImage={STAR_IMAGE}
-              imageSize={18}
-              readonly
-              startingValue={item.rating}
-              ratingBackgroundColor="#ff000000"
-              ratingColor="#FDC60A"
-              style={styles.rating}
+            <StarRating
+              disabled
+              fullStarColor="#FDC60A"
+              emptyStarColor="rgba(36, 37, 61, 0.5)"
+              maxStars={5}
+              rating={item.rating}
+              starSize={20}
+              starStyle={styles.rating}
             />
           </View>
         </View>
