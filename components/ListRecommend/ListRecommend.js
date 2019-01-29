@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Text, FlatList, TouchableHighlight } from 'react-native'
+import { View, StyleSheet, Text, FlatList, TouchableOpacity } from 'react-native'
 import FlatListItem from './FlatListItem'
 
 export class ListRecommend extends Component {
@@ -38,6 +38,10 @@ export class ListRecommend extends Component {
     }
   }
 
+  _onPress = () => {
+    alert('work!')
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -48,9 +52,11 @@ export class ListRecommend extends Component {
             renderItem={({ item, index }) => <FlatListItem item={item} index={index} />}
           />
         </View>
-        <TouchableHighlight style={styles.btnShow}>
-          <Text style={styles.btnShowTxt}>Show more</Text>
-        </TouchableHighlight>
+        <TouchableOpacity onPress={this._onPress}>
+          <View style={styles.btnShow}>
+            <Text style={styles.btnShowTxt}>Show more</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -62,7 +68,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 10,
     paddingTop: 20,
-    backgroundColor: '#E5E5E5',
+    backgroundColor: '#fff',
   },
   packName: {
     fontSize: 18,
@@ -82,11 +88,6 @@ const styles = StyleSheet.create({
     color: '#3A71F6',
     fontSize: 14,
     fontWeight: '500',
-  },
-  subTitle: {
-    marginBottom: 10,
-    fontSize: 12,
-    color: '#484848',
   },
 })
 
