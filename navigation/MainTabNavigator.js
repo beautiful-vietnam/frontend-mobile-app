@@ -1,10 +1,6 @@
 import React from 'react'
 import { Platform } from 'react-native'
-import {
-  createStackNavigator,
-  createBottomTabNavigator,
-  createDrawerNavigator,
-} from 'react-navigation'
+import { createStackNavigator, createBottomTabNavigator } from 'react-navigation'
 
 import TabBarIcon from '../components/TabBarIcon'
 import HomeScreen from '../screens/HomeScreen'
@@ -16,9 +12,11 @@ import ProfileScreen from '../screens/ProfileScreen'
 import RePassScreen from '../screens/ResetPassScreen'
 import LanguagesSceen from '../screens/LanguagesScreen'
 import listRecommend from '../components/ListRecommend/ListRecommend'
+import DetailPost from '../screens/DetailPost'
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
+  DetailPost,
 })
 
 HomeStack.navigationOptions = {
@@ -33,29 +31,13 @@ HomeStack.navigationOptions = {
 }
 
 const LinksStack = createStackNavigator({
-  Links: LinksScreen,
-})
-
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Test',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
-  ),
-  tabBarOptions: {
-    activeTintColor: '#FD5739',
-    style: {
-      backgroundColor: '#F5F5F5',
-    },
-  },
-}
-
-const MyStackNavigator = createStackNavigator({
   Test: {
     screen: LinksScreen,
   },
   recommend: {
     screen: listRecommend,
   },
+
   SignUp: {
     screen: SignUpScreen,
   },
@@ -76,12 +58,22 @@ const MyStackNavigator = createStackNavigator({
   },
 })
 
+LinksStack.navigationOptions = {
+  tabBarLabel: 'Test',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+  ),
+  tabBarOptions: {
+    activeTintColor: '#FD5739',
+    style: {
+      backgroundColor: '#F5F5F5',
+    },
+  },
+}
+
 const MyTabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
 })
 
-export default createDrawerNavigator({
-  MyTabNavigator,
-  MyStackNavigator,
-})
+export default MyTabNavigator

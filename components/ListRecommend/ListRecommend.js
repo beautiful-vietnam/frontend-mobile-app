@@ -43,13 +43,16 @@ export class ListRecommend extends Component {
   }
 
   render() {
+    const { navigation } = this.props
     return (
       <View style={styles.container}>
         <Text style={styles.packName}>Packing List Recommendations </Text>
         <View>
           <FlatList
             data={this.state.dataHome}
-            renderItem={({ item, index }) => <FlatListItem item={item} index={index} />}
+            renderItem={({ item, index }) => (
+              <FlatListItem item={item} index={index} navigation={navigation} />
+            )}
           />
         </View>
         <TouchableOpacity onPress={this._onPress}>

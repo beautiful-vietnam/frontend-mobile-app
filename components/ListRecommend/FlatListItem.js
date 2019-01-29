@@ -5,9 +5,18 @@ import StarRating from 'react-native-star-rating'
 class FlatListItem extends Component {
   render() {
     return (
-      <TouchableWithoutFeedback key={this.props.item.link}>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          this.props.navigation.navigate('DetailPost', {
+            id: this.props.item.key,
+          })
+        }}
+      >
         <View style={styles.aItem}>
-          <Image style={styles.picture} source={{ uri: this.props.item.link }} />
+          <View style={styles.wrapPic}>
+            <Image style={styles.picture} source={{ uri: this.props.item.link }} />
+          </View>
+
           <View style={styles.description}>
             <Text>{this.props.item.title}</Text>
             <Text style={styles.subTitle}>{this.props.item.location}</Text>
@@ -34,11 +43,17 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     flexDirection: 'row',
   },
+  wrapPic: {
+    marginRight: 10,
+    width: 110,
+    height: 80,
+    borderBottomLeftRadius: 4,
+    borderTopLeftRadius: 4,
+    overflow: 'hidden',
+  },
   picture: {
     height: 80,
     width: 110,
-    borderRadius: 4,
-    marginRight: 10,
   },
   description: {
     justifyContent: 'space-between',

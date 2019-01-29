@@ -1,5 +1,12 @@
 import React from 'react'
-import { Text, View, FlatList, Image, TouchableOpacity } from 'react-native'
+import {
+  Text,
+  View,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from 'react-native'
 
 convertHTMLtoText = data => {
   let excerpt = data.replace('<p>', '')
@@ -14,11 +21,12 @@ convertDate = data => {
   return <Text>{dateConverted}</Text>
 }
 
-const SectionContent = dataCate => {
+const SectionContent = ({ dataCate, navigation }) => {
   const styles = {
     wrapTitleCate: {
       paddingLeft: 10,
       marginBottom: 20,
+      paddingRight: 10,
     },
     titleCate: {
       color: '#484848',
@@ -49,29 +57,47 @@ const SectionContent = dataCate => {
       color: '#484848',
       fontSize: 14,
     },
+    textDes: {
+      fontSize: 14,
+      color: '#484848',
+      fontWeight: 'bold',
+    },
+    wrapDes: {
+      width: 300,
+    },
   }
   return (
     <View style={styles.wrapSection}>
       <View style={styles.wrapTitleCate}>
-        <Text style={styles.titleCate}>{dataCate.dataCate.title}</Text>
-        <Text style={styles.desCate}>{dataCate.dataCate.description}</Text>
+        <Text style={styles.titleCate}>{dataCate.title}</Text>
+        <Text style={styles.desCate}>{dataCate.description}</Text>
       </View>
       <FlatList
-        data={dataCate.dataCate.data}
+        data={dataCate.data}
         horizontal
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
           <View style={styles.lists}>
-            <TouchableOpacity>
+            <TouchableWithoutFeedback>
               <Image
                 style={styles.image}
                 source={{ uri: item._embedded['wp:featuredmedia'][0].source_url }}
               />
+            </TouchableWithoutFeedback>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('DetailPost', {
+                  id: item.id,
+                })
+              }}
+            >
+              <View style={styles.wrapDes}>
+                <Text style={styles.textLocation}>{item.title.rendered}</Text>
+                <Text style={styles.textDate}>{convertDate(item.date)}</Text>
+                <Text style={styles.textDes}>{convertHTMLtoText(item.excerpt.rendered)}</Text>
+              </View>
             </TouchableOpacity>
-            <Text style={styles.textLocation}>{item.title.rendered}</Text>
-            {convertDate(item.date)}
-            {convertHTMLtoText(item.excerpt.rendered)}
           </View>
         )}
         keyExtractor={item => item.id.toString()}

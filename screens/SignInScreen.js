@@ -15,6 +15,14 @@ export default class SignIn extends React.Component {
     alert(`${this.state.email}-${this.state.password}`)
   }
 
+  onChangeEmail = email => {
+    this.setState({ email })
+  }
+
+  onChangePassword = password => {
+    this.setState({ password })
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -27,9 +35,7 @@ export default class SignIn extends React.Component {
               keyboardType="email-address"
               returnKeyType="next"
               onSubmitEditing={() => this.passwordInput.focus()}
-              onChangeText={value => {
-                this.setState({ email: value })
-              }}
+              onChangeText={this.onChangeEmail}
             />
             <TextInput
               style={styles.inputText}
@@ -37,9 +43,7 @@ export default class SignIn extends React.Component {
               returnKeyType="go"
               ref={input => (this.passwordInput = input)}
               secureTextEntry
-              onChangeText={value => {
-                this.setState({ password: value })
-              }}
+              onChangeText={this.onChangePassword}
             />
           </View>
           <TouchableOpacity style={styles.loginBtn} onPress={this._onPressButton}>
