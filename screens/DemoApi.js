@@ -1,29 +1,24 @@
 import React from 'react'
 import axios from 'axios'
 import { View, Text, ScrollView, StyleSheet, Image } from 'react-native'
+import HTMLView from 'react-native-htmlview'
 
 export default class SignIn extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      listArticle: null,
+      dataArticle: null,
     }
   }
 
   componentDidMount() {
     axios
-      .get(`https://travel-app.000webhostapp.com/wp-json/wp/v2/posts?_embed&categories=5`)
+      .get(`https://travel-app.000webhostapp.com/wp-json/wp/v2/posts?_embed&posts=19`)
       .then(result => {
         this.setState({
-          listArticle: result.data,
+          dataArticle: result.data[0],
         })
       })
-  }
-
-  convertHTMLtoText = data => {
-    let excerpt = data.replace('<p>', '')
-    excerpt = excerpt.replace('</p>', '...')
-    return <Text>{excerpt}</Text>
   }
 
   convertDate = data => {
@@ -33,29 +28,36 @@ export default class SignIn extends React.Component {
     return <Text>{dateConverted}</Text>
   }
 
-  showTitle() {
-    if (this.state.listArticle) {
-      return this.state.listArticle.map((value, key) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <View key={key}>
-          <Text>{value.title.rendered}</Text>
+  showContent() {
+    if (this.state.dataArticle) {
+      return (
+        <View>
+          <Text>{this.state.dataArticle.title.rendered}</Text>
           <Image
             resizeMode="contain"
             style={styles.imageStyle}
-            source={{ uri: value._embedded['wp:featuredmedia'][0].source_url }}
+            source={{ uri: this.state.dataArticle._embedded['wp:featuredmedia'][0].source_url }}
           />
-          <Text>{value._embedded['wp:term'][0][0].name}</Text>
-          {this.convertDate(value.date)}
-          {this.convertHTMLtoText(value.excerpt.rendered)}
+          <Text>{this.state.dataArticle._embedded['wp:term'][0][0].name}</Text>
+          {this.convertDate(this.state.dataArticle.date)}
+          <HTMLView value={this.state.dataArticle.excerpt.rendered} renderNode={this.renderNode} />
         </View>
-      ))
+      )
+    }
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  renderNode(node) {
+    if (node.name === 'img') {
+      const a = node.attribs
+      return <Image style={{ width: 400, height: 250 }} source={{ uri: a.src }} />
     }
   }
 
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <ScrollView style={styles.container}>{this.showTitle()}</ScrollView>
+        <ScrollView style={styles.container}>{this.showContent()}</ScrollView>
       </View>
     )
   }
