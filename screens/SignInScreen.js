@@ -1,6 +1,5 @@
 import React from 'react'
-import { Button, View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import { TextInput } from 'react-native-gesture-handler'
+import { Button, View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native'
 
 export default class SignIn extends React.Component {
   constructor(props) {
