@@ -37,7 +37,9 @@ const LinksStack = createStackNavigator({
   recommend: {
     screen: listRecommend,
   },
-
+  DetailPostRecommend: {
+    screen: DetailPost,
+  },
   SignUp: {
     screen: SignUpScreen,
   },
