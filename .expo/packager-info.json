@@ -3,7 +3,7 @@
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": "https://tr-t2y.anonymous.travel-app.exp.direct",
-  "packagerNgrokUrl": "https://packager.tr-t2y.anonymous.travel-app.exp.direct",
-  "ngrokPid": 4856
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }

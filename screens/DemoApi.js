@@ -30,6 +30,7 @@ export default class SignIn extends React.Component {
 
   showContent() {
     if (this.state.dataArticle) {
+      const contentFormat = this.state.dataArticle.content.rendered.replace(/\n\n\n\n/g, '\n')
       return (
         <View>
           <Text>{this.state.dataArticle.title.rendered}</Text>
@@ -40,7 +41,7 @@ export default class SignIn extends React.Component {
           />
           <Text>{this.state.dataArticle._embedded['wp:term'][0][0].name}</Text>
           {this.convertDate(this.state.dataArticle.date)}
-          <HTMLView value={this.state.dataArticle.excerpt.rendered} renderNode={this.renderNode} />
+          <HTMLView value={contentFormat} renderNode={this.renderNode} />
         </View>
       )
     }
@@ -50,7 +51,7 @@ export default class SignIn extends React.Component {
   renderNode(node) {
     if (node.name === 'img') {
       const a = node.attribs
-      return <Image style={{ width: 400, height: 250 }} source={{ uri: a.src }} />
+      return <Image key={node} style={{ width: 400, height: 250 }} source={{ uri: a.src }} />
     }
   }
 
