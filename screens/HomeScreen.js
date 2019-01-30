@@ -6,6 +6,7 @@ import { ListPosts } from '../components/Post'
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
+    title: 'Home',
   }
 
   render() {
@@ -35,7 +36,6 @@ const styles = StyleSheet.create({
   },
   swiper: {
     height: 320,
-    marginLeft: 25,
     paddingBottom: 25,
     paddingTop: 15,
   },

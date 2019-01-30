@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
   slide: {
     flex: 1,
     marginRight: 25,
+    marginLeft: 25,
   },
   image: {
     flex: 1,

@@ -6,7 +6,10 @@ import {
   Image,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  Dimensions,
 } from 'react-native'
+
+const { width } = Dimensions.get('window')
 
 convertHTMLtoText = data => {
   let excerpt = data.replace('<p>', '')
@@ -38,7 +41,7 @@ const SectionContent = ({ dataCate, navigation }) => {
       fontSize: 16,
     },
     image: {
-      width: 300,
+      width: width - 80,
       height: 200,
       resizeMode: 'cover',
       borderRadius: 8,
@@ -57,13 +60,8 @@ const SectionContent = ({ dataCate, navigation }) => {
       color: '#484848',
       fontSize: 14,
     },
-    textDes: {
-      fontSize: 14,
-      color: '#484848',
-      fontWeight: 'bold',
-    },
     wrapDes: {
-      width: 300,
+      width: width - 100,
     },
   }
   return (
@@ -95,7 +93,7 @@ const SectionContent = ({ dataCate, navigation }) => {
               <View style={styles.wrapDes}>
                 <Text style={styles.textLocation}>{item.title.rendered}</Text>
                 <Text style={styles.textDate}>{convertDate(item.date)}</Text>
-                <Text style={styles.textDes}>{convertHTMLtoText(item.excerpt.rendered)}</Text>
+                <Text style={styles.desCate}>{convertHTMLtoText(item.excerpt.rendered)}</Text>
               </View>
             </TouchableOpacity>
           </View>
