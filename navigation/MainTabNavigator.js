@@ -11,6 +11,7 @@ import DemoApi from '../screens/DemoApi'
 import ProfileScreen from '../screens/ProfileScreen'
 import RePassScreen from '../screens/ResetPassScreen'
 import LanguagesSceen from '../screens/LanguagesScreen'
+import listRecommend from '../components/ListRecommend/ListRecommend'
 import DetailPost from '../screens/DetailPost'
 
 const HomeStack = createStackNavigator({
@@ -30,7 +31,15 @@ HomeStack.navigationOptions = {
 }
 
 const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+  Test: {
+    screen: LinksScreen,
+  },
+  recommend: {
+    screen: listRecommend,
+  },
+  DetailPostRecommend: {
+    screen: DetailPost,
+  },
   SignUp: {
     screen: SignUpScreen,
   },
