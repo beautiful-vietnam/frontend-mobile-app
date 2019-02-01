@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, Image, StyleSheet, Dimensions } from 'react-native'
 import StarRating from 'react-native-star-rating'
+import HTMLView from 'react-native-htmlview'
+import axios from 'axios'
 
 const { width } = Dimensions.get('window')
 
@@ -13,58 +15,72 @@ export class Detail extends Component {
         content: 'a journey into the past',
         cover: 'https://uphinhnhanh.com/images/2019/01/29/Rectangle.png',
         caption: 'Capital of Roman Empire',
-        content1:
-          "Rome's history spans more than 2,500 years. While Roman mythology dates the founding of Rome at around 753 BC, the site has been inhabited for much longer, making it one of the oldest continuously occupied sites in Europe.",
-        content2:
-          "The city's early population originated from a mix of Latins, Etruscans and Sabines. Eventually, the city successively became the capital of the Roman Kingdom, the Roman Republic and the Roman Empire, and is regarded as one of the birthplaces of Western civilisation and by some…",
-        image: 'https://uphinhnhanh.com/images/2019/01/29/map.png',
+        dataArticle: null,
         rating: 4,
       },
     }
   }
 
+  componentDidMount() {
+    axios
+      .get(`https://travel-app.000webhostapp.com/wp-json/wp/v2/posts?_embed&posts=19`)
+      .then(result => {
+        this.setState({
+          dataArticle: result.data[0],
+        })
+      })
+  }
+
+  convertDate = data => {
+    const date = new Date(data)
+    const indexTime = date.toString().indexOf(':') - 2
+    const dateConverted = date.toUTCString().substring(0, indexTime)
+    return <Text>{dateConverted}</Text>
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  renderNode(node) {
+    if (node.name === 'img') {
+      const a = node.attribs
+      return <Image key={node} style={{ width: 350, height: 250 }} source={{ uri: a.src }} />
+    }
+  }
+
   render() {
-    const item = this.state.dataPost
-    return (
-      <View style={styles.wrapAllDetail}>
-        <View style={styles.wrapCover}>
-          <Image style={styles.image} source={{ uri: item.cover }} />
-          <View style={styles.contentCover}>
-            <Text style={styles.contentTitle}>{item.title}</Text>
-            <Text style={styles.content}>{item.content}</Text>
-            <StarRating
-              disabled
-              fullStarColor="#FDC60A"
-              emptyStarColor="rgba(36, 37, 61, 0.5)"
-              maxStars={5}
-              rating={item.rating}
-              starSize={20}
-              starStyle={styles.rating}
-            />
+    if (this.state.dataArticle) {
+      const item = this.state.dataPost
+      const contentFormat = this.state.dataArticle.content.rendered.replace(/\n\n\n\n/g, '\n')
+      return (
+        <View style={styles.wrapAllDetail}>
+          <View style={styles.wrapCover}>
+            <Image style={styles.image} source={{ uri: item.cover }} />
+            <View style={styles.contentCover}>
+              <Text style={styles.contentTitle}>{item.title}</Text>
+              <Text style={styles.content}>{item.content}</Text>
+              <StarRating
+                disabled
+                fullStarColor="#FDC60A"
+                emptyStarColor="rgba(36, 37, 61, 0.5)"
+                maxStars={5}
+                rating={item.rating}
+                starSize={20}
+                starStyle={styles.rating}
+              />
+            </View>
+          </View>
+          <View style={styles.wrapPost}>
+            <View style={styles.caption}>
+              <Text style={styles.textCaption}>{this.state.dataArticle.title.rendered}</Text>
+            </View>
+            <View style={styles.wrapContent1}>
+              <HTMLView value={contentFormat} renderNode={this.renderNode} />
+            </View>
           </View>
         </View>
-        <View style={styles.wrapPost}>
-          <View style={styles.caption}>
-            <Text style={styles.textCaption}>{item.caption}</Text>
-          </View>
-          <View style={styles.wrapContent1}>
-            <Text style={styles.textContent1}>{item.content1}</Text>
-          </View>
-          <View style={styles.wrapContent2}>
-            <Text style={styles.textContent2}>{item.content2}</Text>
-          </View>
-          <View style={styles.wrapImagePost}>
-            <Image style={styles.imagePost} source={{ uri: item.image }} />
-          </View>
-          <View style={styles.wrapContent1}>
-            <Text style={styles.textContent1}>{item.content1}</Text>
-          </View>
-          <View style={styles.wrapContent2}>
-            <Text style={styles.textContent2}>{item.content2}</Text>
-          </View>
-        </View>
-      </View>
-    )
+      )
+    } else {
+      return null
+    }
   }
 }
 
@@ -104,15 +120,7 @@ const styles = StyleSheet.create({
   wrapContent1: {
     paddingTop: 35,
   },
-  wrapContent2: {
-    paddingTop: 20,
-    paddingBottom: 25,
-  },
   textContent1: {
-    fontSize: 13,
-    color: '#24253D',
-  },
-  textContent2: {
     fontSize: 13,
     color: '#24253D',
   },
