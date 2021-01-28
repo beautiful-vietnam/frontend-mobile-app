@@ -21,7 +21,7 @@
   "dependencies": {
     "@expo/samples": "2.1.1",
     "axios": "^0.18.1",
-    "electron": "^4.0.2",
+    "electron": "^9.4.0",
     "expo": "^31.0.2",
     "global": "^4.3.2",
     "react": "16.5.0",
